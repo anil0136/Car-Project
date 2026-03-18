@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center py-5">
+
+    <!-- Message -->
+    <h2 class="mb-4 neon-text">Choose your car for rental 🚗</h2>
+
+    <!-- Two Buttons as links -->
+    <div class="d-flex justify-content-center gap-4 flex-wrap mb-4">
+        <a href="?seat=5 seater">
+            <button class="btn neon-btn-green px-4 py-2">🚘 5 Seater</button>
+        </a>
+        <a href="?seat=7 seater">
+            <button class="btn neon-btn-pink px-4 py-2">🚙 7 Seater</button>
+        </a>
+    </div>
+
+    {% if cars %}
+    <h4 class="mb-3 neon-text">{{ seat_type|title }} Cars Available</h4>
+    <div class="row justify-content-center">
+        {% for car in cars %}
+        <div class="col-md-4 mb-4">
+            <!-- Neon card: rotate colors based on loop counter -->
+            <div class="card text-white shadow-lg 
+                        {% cycle 'neon-card-green' 'neon-card-pink' 'neon-card-yellow' %}">
+                {% if car.car_img %}
+                <img src="{{ car.car_img.url }}" class="card-img-top" style="height:220px;object-fit:cover;">
+                {% endif %}
+                <div class="card-body">
+                    <a href="{% url 'details' car.id %}" class="text-white text-decoration-none">
+                        <h5 class="card-title">{{ car.car_name }}</h5>
+                    </a>
+                    <p class="mb-1"><b>Company:</b> {{ car.Company }}</p>
+                    <p class="mb-1"><b>Rating:</b> {{ car.rating }}/5</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif seat_type %}
+    <p class="mt-4 text-danger">No cars found for {{ seat_type }}.</p>
+    {% endif %}
+
+</div>
+
+<!-- Neon Styles -->
+<style>
+    body {
+        background: black;
+    }
+
+    .neon-text {
+        color: #fff;
+        text-shadow: 0 0 10px #39ff14, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+        font-weight: bold;
+    }
+
+    /* Neon Buttons */
+    .neon-btn-green {
+        background: black;
+        border: 2px solid #39ff14;
+        color: #39ff14;
+        text-shadow: 0 0 8px #39ff14;
+        box-shadow: 0 0 10px #39ff14;
+    }
+
+    .neon-btn-green:hover {
+        background: #39ff14;
+        color: black;
+        box-shadow: 0 0 20px #39ff14;
+    }
+
+    .neon-btn-pink {
+        background: black;
+        border: 2px solid #ff00ff;
+        color: #ff00ff;
+        text-shadow: 0 0 8px #ff00ff;
+        box-shadow: 0 0 10px #ff00ff;
+    }
+
+    .neon-btn-pink:hover {
+        background: #ff00ff;
+        color: black;
+        box-shadow: 0 0 20px #ff00ff;
+    }
+
+    /* Neon Card Borders */
+    .neon-card-green {
+        background: #111;
+        border: 2px solid #39ff14;
+        box-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14 inset;
+    }
+
+    .neon-card-pink {
+        background: #111;
+        border: 2px solid #ff00ff;
+        box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff inset;
+    }
+
+    .neon-card-yellow {
+        background: #111;
+        border: 2px solid #ffff00;
+        box-shadow: 0 0 15px #ffff00, 0 0 30px #ffff00 inset;
+    }
+</style>
+{% endblock %}

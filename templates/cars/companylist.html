@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+    }
+
+    h1 {
+        text-shadow: 0 0 8px #39ff14, 0 0 12px #00ffff, 0 0 20px #ff00ff, 0 0 30px #ffff33;
+        font-weight: bold;
+    }
+
+    .card {
+        background: rgba(20, 20, 20, 0.85);
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-green {
+        border: 2px solid #39ff14;
+        box-shadow: 0 0 10px #39ff14, 0 0 20px #00ff88;
+    }
+
+    .card-green:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 0 20px #39ff14, 0 0 40px #00ff88;
+    }
+
+    .card-pink {
+        border: 2px solid #ff00ff;
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff66ff;
+    }
+
+    .card-pink:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff66ff;
+    }
+
+    .card-yellow {
+        border: 2px solid #ffff33;
+        box-shadow: 0 0 10px #ffff33, 0 0 20px #ffee88;
+    }
+
+    .card-yellow:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 0 20px #ffff33, 0 0 40px #ffee88;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 10px;
+        text-shadow: 0 0 5px #39ff14, 0 0 10px #00ffff, 0 0 15px #ff00ff, 0 0 20px #ffff33;
+        color: #fff;
+    }
+
+    .card-img-top {
+        padding: 10px;
+        filter: drop-shadow(0 0 10px #00ffff) drop-shadow(0 0 20px #ff00ff);
+    }
+</style>
+
+<div class="container py-5">
+    <h1 class="mb-5 text-center">✨ Top Companies ✨</h1>
+
+    <div class="row">
+        {% for company in companies %}
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'company_products' company.id %}" class="text-decoration-none">
+                <div class="card text-center h-100 shadow-lg 
+                    {% if forloop.counter|divisibleby:3 %}card-yellow
+                    {% elif forloop.counter|divisibleby:2 %}card-pink
+                    {% else %}card-green{% endif %}">
+
+                    {% if company.logo %}
+                    <img src="{{ company.logo.url }}" class="card-img-top mx-auto d-block"
+                        style="height: 200px; width: auto; object-fit: contain;" alt="{{ company.name }} Logo">
+                    {% else %}
+                    <img src="{% static 'images/no-image.png' %}" class="card-img-top mx-auto d-block"
+                        style="height: 200px; width: auto; object-fit: contain;" alt="No Logo">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ company.name }}</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <p class="text-center">No companies available.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

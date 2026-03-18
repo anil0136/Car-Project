@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #eee;
+        }
+
+        .header {
+            background-color: #f5f5f5;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .details {
+            margin: 20px 0;
+        }
+
+        .details th,
+        .details td {
+            padding: 8px 12px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Booking Confirmation</h2>
+        </div>
+        <p>Thank you for booking a car with us!</p>
+        <table class="details" width="100%" border="1" cellspacing="0">
+            <tr>
+                <th>Car Name</th>
+                <td>{{ car_name }}</td>
+            </tr>
+            <tr>
+                <th>Total km driven</th>
+                <td>{{ total_km_driven }}</td>
+            </tr>
+            <tr>
+                <th>Total Amount</th>
+                <td>{{ total_amount }}</td>
+            </tr>
+        </table>
+        <div class="footer">
+            If you have any questions, please contact us.<br>
+            &copy; {{ current_year }} Car Rental Service
+        </div>
+    </div>
+</body>
+
+</html>

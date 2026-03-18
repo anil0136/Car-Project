@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-color: black;
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .update-card {
+        background: rgba(20, 20, 20, 0.85);
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 0 15px #39ff14, 0 0 25px #ff00ff, 0 0 40px #ffff33, 0 0 60px #00ffff;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        text-shadow: 0 0 5px #39ff14, 0 0 10px #ff00ff, 0 0 20px #ffff33, 0 0 30px #00ffff;
+    }
+
+    label {
+        font-weight: bold;
+        color: #ffff33;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #39ff14;
+    }
+
+    input,
+    select,
+    textarea {
+        background: black !important;
+        color: white !important;
+        border: 2px solid #39ff14 !important;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #39ff14, 0 0 10px #ff00ff;
+        padding: 10px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none !important;
+        border-color: #00ffff !important;
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #ffff33;
+    }
+
+    .btn-neon {
+        background: black;
+        border: 2px solid #39ff14;
+        color: #39ff14;
+        font-weight: bold;
+        text-shadow: 0 0 5px #39ff14;
+        box-shadow: 0 0 10px #39ff14, 0 0 20px #ff00ff;
+        transition: 0.3s ease-in-out;
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .btn-neon:hover {
+        background: #39ff14;
+        color: black;
+        box-shadow: 0 0 20px #ffff33, 0 0 40px #00ffff;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="update-card">
+        <h1>Update Profile</h1>
+        <form action="{% url 'update' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+                {{ form1.as_p }}
+            </div>
+            <button type="submit" class="btn btn-neon mt-3">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

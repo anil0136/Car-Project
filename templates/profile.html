@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-color: black;
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .profile-card {
+        background: rgba(20, 20, 20, 0.8);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 20px #39ff14, 0 0 40px #ff00ff, 0 0 60px #ffff33, 0 0 80px #00ffff;
+        text-align: center;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #39ff14;
+        box-shadow: 0 0 20px #ff00ff, 0 0 40px #39ff14;
+        margin-bottom: 20px;
+    }
+
+    .neon-text {
+        text-shadow: 0 0 5px #39ff14, 0 0 10px #ff00ff, 0 0 20px #ffff33, 0 0 40px #00ffff;
+    }
+
+    .btn-neon {
+        background: black;
+        border: 2px solid #39ff14;
+        color: #39ff14;
+        font-weight: bold;
+        text-shadow: 0 0 5px #39ff14;
+        box-shadow: 0 0 10px #39ff14, 0 0 20px #ff00ff;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-neon:hover {
+        background: #39ff14;
+        color: black;
+        box-shadow: 0 0 20px #ffff33, 0 0 40px #00ffff;
+    }
+
+    .profile-details h5 {
+        margin-bottom: 10px;
+        color: #ffff33;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #39ff14;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="profile-card">
+        <h2 class="neon-text">Welcome to {{ user.username }}'s Profile</h2>
+
+        {% if user.userregistation %}
+        {% if user.userregistation.profile_pic %}
+        <img src="{{ user.userregistation.profile_pic.url }}" alt="Profile Picture" class="profile-pic">
+        {% else %}
+        <h5>No profile picture uploaded.</h5>
+        {% endif %}
+
+        <div class="profile-details mt-3 text-start">
+            <h5><strong>User Name:</strong> {{ user.username }}</h5>
+            <h5><strong>Email:</strong> {{ user.email }}</h5>
+            <h5><strong>Door No:</strong> {{ user.userregistation.door_no }}</h5>
+            <h5><strong>Mobile:</strong> {{ user.userregistation.mobile_no }}</h5>
+            <h5><strong>City:</strong> {{ user.userregistation.city }}</h5>
+            <h5><strong>Landmark:</strong> {{ user.userregistation.land_mark }}</h5>
+            <h5><strong>State:</strong> {{ user.userregistation.state }}</h5>
+            <h5><strong>Pincode:</strong> {{ user.userregistation.pincode }}</h5>
+        </div>
+        {% else %}
+        <h5>No profile details found.</h5>
+        {% endif %}
+
+        <a href="{% url 'update' %}">
+            <button type="button" class="btn btn-neon mt-4">Edit Profile</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

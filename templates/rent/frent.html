@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    body {
+        background: #0d0d0d;
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .neon-text-green {
+        color: #39ff14;
+        text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+    }
+
+    .neon-text-pink {
+        color: #ff00ff;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+
+    .neon-text-yellow {
+        color: #ffff00;
+        text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00, 0 0 20px #ffff00;
+    }
+
+    .neon-input {
+        background-color: #111 !important;
+        color: #fff !important;
+        border: 2px solid transparent;
+        border-radius: 12px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .border-neon-green:focus {
+        border-color: #39ff14 !important;
+        box-shadow: 0 0 10px #39ff14;
+    }
+
+    .border-neon-pink:focus {
+        border-color: #ff00ff !important;
+        box-shadow: 0 0 10px #ff00ff;
+    }
+
+    .neon-button {
+        background: #111;
+        border: 2px solid #ffff00;
+        color: #ffff00;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .neon-button:hover {
+        background: #ffff00;
+        color: #111;
+        box-shadow: 0 0 15px #ffff00, 0 0 25px #ffff00;
+    }
+
+    .card-custom {
+        background: #1a1a1a;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+</style>
+
+<div class="container py-5">
+
+    {% if ca %}
+    <div class="card-custom text-center">
+        <h2 class="neon-text-green">{{ car.car_name }} Final Rent Price :</h2>
+        <h1 class="neon-text-yellow">{{ fp | floatformat:2 }}</h1>
+    </div>
+    {% else %}
+    <div class="card-custom">
+        <h2 class="neon-text-green mb-4">🚘 Car Rental Details</h2>
+        <h4 class="neon-text-yellow">Car Name : {{ car.car_name }}</h4>
+        <h5 class="neon-text-pink">Km per day : 300 km</h5>
+        <h5 class="neon-text-green">Price per km : {{ km }}</h5>
+        <h5 class="neon-text-yellow">KM at first on Odometer : {{ car.total_km_driven }}</h5>
+
+        <form action="" method="POST" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="days" class="form-label neon-text-green">Enter number of days:</label>
+                <input type="number" id="days" name="days" class="form-control neon-input border-neon-green" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="exp_km" class="form-label neon-text-pink">Expected km:</label>
+                <input type="number" id="exp_km" name="exp_km" class="form-control neon-input border-neon-pink"
+                    value="0">
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="Submit" class="btn neon-button">
+            </div>
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}
