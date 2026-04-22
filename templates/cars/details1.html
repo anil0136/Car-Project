@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Vehicle Showcase</div>
+        <h1 class="section-title">{{ product.product_name }} <span>gallery</span></h1>
+        <p class="muted-copy">Review interior and exterior views before continuing to pricing or model comparison.</p>
+    </div>
+
+    <div class="detail-layout">
+        <div class="detail-card">
+            <div class="section-kicker">Vehicle Overview</div>
+            <h2 class="detail-title">{{ product.product_name }}</h2>
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <div class="name">Company</div>
+                    <div class="reading">{{ product.company.name }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Color</div>
+                    <div class="reading">{{ product.color }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Fuel Type</div>
+                    <div class="reading">{{ product.fuel_type }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Seats</div>
+                    <div class="reading">{{ product.seat_Capacity }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Engine</div>
+                    <div class="reading">{{ product.cc }} cc</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Mileage</div>
+                    <div class="reading">{{ product.mileage }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Price</div>
+                    <div class="reading">Rs. {{ product.price }}</div>
+                </div>
+            </div>
+
+            <div class="hero-actions" style="margin-top: 1.5rem;">
+                <a class="btn-brand" href="{% url 'emi' %}?price={{ product.price }}&car={{ product.product_name|urlencode }}">Explore EMI</a>
+                <a class="btn-outline-light" href="{% url 'company_products' product.company.id %}">Back to Models</a>
+                <a class="btn-outline-accent" href="{% url 'home' %}">Home</a>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="section-kicker">Primary Image</div>
+            <div class="detail-hero-image">
+                {% if product.product_img %}
+                <img src="{{ product.product_img.url }}" alt="{{ product.product_name }}">
+                {% else %}
+                <div class="empty-state" style="height: 100%;">Primary image unavailable</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="surface-panel" style="margin-top: 1.75rem;">
+        <div class="section-header">
+            <div>
+                <div class="section-kicker">Interior</div>
+                <h2 class="section-title">Cabin <span>gallery</span></h2>
+            </div>
+        </div>
+
+        {% if interior_images %}
+        <div class="gallery-grid">
+            {% for img in interior_images %}
+            <div class="gallery-card">
+                <img src="{{ img.interior.url }}" alt="Interior image">
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">No interior images are available.</div>
+        {% endif %}
+    </div>
+
+    <div class="surface-panel" style="margin-top: 1.75rem;">
+        <div class="section-header">
+            <div>
+                <div class="section-kicker">Exterior</div>
+                <h2 class="section-title">Exterior <span>gallery</span></h2>
+            </div>
+        </div>
+
+        {% if exterior_images %}
+        <div class="gallery-grid">
+            {% for img in exterior_images %}
+            <div class="gallery-card">
+                <img src="{{ img.exterior.url }}" alt="Exterior image">
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">No exterior images are available.</div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

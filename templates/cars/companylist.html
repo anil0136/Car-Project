@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Brand Directory</div>
+        <h1 class="section-title">Explore automotive <span>manufacturers</span></h1>
+        <p class="muted-copy">Select a brand to inspect its lineup, positioning, and available models in the marketplace.</p>
+    </div>
+
+    {% if companies %}
+    <div class="brand-grid">
+        {% for company in companies %}
+        <a class="brand-card" href="{% url 'company_products' company.id %}">
+            <div class="card-image logo-wall">
+                {% if company.logo %}
+                <img src="{{ company.logo.url }}" alt="{{ company.name }} logo">
+                {% else %}
+                <div class="empty-state" style="width: 100%;">{{ company.name }}</div>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">{{ company.name }}</h2>
+                <p class="card-subtitle">View brand background and available products.</p>
+                <span class="btn-outline-accent">See Models</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">No companies are available right now.</div>
+    {% endif %}
+</section>
+{% endblock %}

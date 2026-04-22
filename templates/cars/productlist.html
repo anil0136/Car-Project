@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Product Lineup</div>
+        <h1 class="section-title">
+            {% if company %}
+            {{ company.name }} <span>collection</span>
+            {% else %}
+            Vehicle <span>collection</span>
+            {% endif %}
+        </h1>
+        <p class="muted-copy">
+            {% if company %}
+            Review the brand profile and compare its available models.
+            {% else %}
+            Compare all listed vehicles in one streamlined overview.
+            {% endif %}
+        </p>
+    </div>
+
+    {% if company %}
+    <div class="surface-panel" style="margin-bottom: 1.5rem;">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="card-body">
+                    <div class="section-kicker">Chief Executive</div>
+                    <div class="card-title">{{ company.ceo }}</div>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="card-body">
+                    <div class="section-kicker">Established</div>
+                    <div class="card-title">{{ company.est_year }}</div>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="card-body">
+                    <div class="section-kicker">Origin</div>
+                    <div class="card-title">{{ company.origin }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="hero-actions" style="margin-bottom: 1.5rem;">
+        <a class="btn-outline-light" href="{% if company %}{% url 'company_list' %}{% else %}{% url 'home' %}{% endif %}">Back</a>
+        <a class="btn-outline-accent" href="{% url 'emi' %}">Open EMI Guide</a>
+    </div>
+
+    {% if products %}
+    <div class="product-grid">
+        {% for product in products %}
+        <article class="product-card">
+            <div class="card-image">
+                {% if product.product_img %}
+                <img src="{{ product.product_img.url }}" alt="{{ product.product_name }}">
+                {% else %}
+                <div class="empty-state" style="width: 100%;">Image unavailable</div>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <div class="inline-actions" style="justify-content: space-between; margin-bottom: 0.9rem;">
+                    <span class="price-tag">Rs. {{ product.price }}</span>
+                    <span class="tag">{{ product.color }}</span>
+                </div>
+                <h2 class="card-title">{{ product.product_name }}</h2>
+                <div class="data-chips">
+                    <div class="data-chip">
+                        <div class="label">Fuel Type</div>
+                        <div class="value">{{ product.fuel_type }}</div>
+                    </div>
+                    <div class="data-chip">
+                        <div class="label">Seat Capacity</div>
+                        <div class="value">{{ product.seat_Capacity }}</div>
+                    </div>
+                    <div class="data-chip">
+                        <div class="label">Engine</div>
+                        <div class="value">{{ product.cc }} cc</div>
+                    </div>
+                </div>
+                <div class="hero-actions" style="margin-top: 1rem;">
+                    <a class="btn-brand" href="{% url 'details1' product.id %}">View Details</a>
+                    <a class="btn-outline-light" href="{% url 'emi' %}?price={{ product.price }}&car={{ product.product_name|urlencode }}">EMI Info</a>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">No products are available for this selection.</div>
+    {% endif %}
+</section>
+{% endblock %}

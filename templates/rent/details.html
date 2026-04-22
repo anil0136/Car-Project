@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Rental Detail</div>
+        <h1 class="section-title">{{ car.car_name }} <span>overview</span></h1>
+        <p class="muted-copy">Inspect the vehicle profile before moving to rental cost calculation.</p>
+    </div>
+
+    <div class="detail-layout">
+        <div class="detail-card">
+            <div class="detail-hero-image">
+                {% if car.car_img %}
+                <img src="{{ car.car_img.url }}" alt="{{ car.car_name }}">
+                {% else %}
+                <div class="empty-state" style="height: 100%;">No image available</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="section-kicker">Vehicle Specs</div>
+            <h2 class="detail-title">{{ car.car_name }}</h2>
+            <div class="spec-grid">
+                <div class="spec-item">
+                    <div class="name">Company</div>
+                    <div class="reading">{{ car.Company }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Color</div>
+                    <div class="reading">{{ car.color }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Fuel</div>
+                    <div class="reading">{{ car.fuel_type|upper }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Seats</div>
+                    <div class="reading">{{ car.seat_capacity }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Transmission</div>
+                    <div class="reading">{{ car.transmission_type|title }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Odometer</div>
+                    <div class="reading">{{ car.total_km_driven }}</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Bootspace</div>
+                    <div class="reading">{{ car.bootspace }} L</div>
+                </div>
+                <div class="spec-item">
+                    <div class="name">Amenities</div>
+                    <div class="reading">{{ car.amminities }}</div>
+                </div>
+            </div>
+
+            <div class="hero-actions" style="margin-top: 1.5rem;">
+                <a class="btn-brand" href="{% url 'check' car.id %}">Checkout Rent Details</a>
+                <a class="btn-outline-light" href="{% url 'rent' %}">Back to Fleet</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

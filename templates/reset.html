@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell auth-shell">
+    <div class="auth-card" style="width: 100%; max-width: 620px;">
+        <div class="section-kicker">Password Recovery</div>
+        <h1>Reset your password</h1>
+        <p class="muted-copy">Enter your username and choose a new password to regain access to your account.</p>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="hero-actions" style="margin-top: 1rem;">
+                <button type="submit" class="btn-brand">Reset Password</button>
+                <a class="btn-outline-light" href="{% url 'login' %}">Back to Login</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

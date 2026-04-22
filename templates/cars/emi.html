@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell auth-shell">
+    <div class="summary-card" style="width: 100%; max-width: 860px;">
+        <div class="section-kicker">Finance Guidance</div>
+        <h1>EMI calculator</h1>
+        <p class="muted-copy">
+            Estimate your monthly EMI using the car price, down payment, and repayment tenure. This calculator currently uses a fixed annual interest rate of {{ annual_interest_rate }}%.
+        </p>
+
+        {% if emi_error %}
+        <div class="empty-state status-bad" style="text-align: left; margin-bottom: 1rem;">
+            {{ emi_error }}
+        </div>
+        {% endif %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="car_name" value="{{ car_name }}">
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label for="car_price">Car price</label>
+                    <input id="car_price" type="number" step="0.01" min="1" name="car_price" value="{{ car_price }}" placeholder="Enter total car price" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="down_payment">Down payment</label>
+                    <input id="down_payment" type="number" step="0.01" min="0" name="down_payment" value="{{ down_payment }}" placeholder="Enter down payment" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="years">Repayment period in years</label>
+                    <input id="years" type="number" min="1" name="years" value="{{ years }}" placeholder="Example: 5" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="interest_rate">Annual interest rate</label>
+                    <input id="interest_rate" type="text" value="{{ annual_interest_rate }}%" readonly>
+                </div>
+            </div>
+
+            {% if car_name %}
+            <p class="inline-note" style="margin-top: 1rem;">Selected car: {{ car_name }}</p>
+            {% endif %}
+
+            <div class="hero-actions" style="margin-top: 1.5rem;">
+                <button type="submit" class="btn-brand">Calculate EMI</button>
+                <a class="btn-outline-light" href="{% url 'company_list' %}">Back to Cars</a>
+            </div>
+        </form>
+
+        {% if emi_result %}
+        <div class="surface-panel" style="margin-top: 1.75rem;">
+            <div class="section-header">
+                <div>
+                    <div class="section-kicker">Calculation Result</div>
+                    <h2 class="section-title">Your monthly <span>EMI</span></h2>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-body">
+                        <div class="section-kicker">Monthly EMI</div>
+                        <div class="price-display" style="font-size: 2.2rem;">Rs. {{ emi_result|floatformat:2 }}</div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="card-body">
+                        <div class="section-kicker">Amount Financed</div>
+                        <div class="card-title">Rs. {{ finance_amount|floatformat:2 }}</div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="card-body">
+                        <div class="section-kicker">Total Payment</div>
+                        <div class="card-title">Rs. {{ total_payment|floatformat:2 }}</div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="card-body">
+                        <div class="section-kicker">Total Interest</div>
+                        <div class="card-title">Rs. {{ total_interest|floatformat:2 }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

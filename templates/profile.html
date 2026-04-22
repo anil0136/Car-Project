@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Account Center</div>
+        <h1 class="section-title">Your <span>profile</span></h1>
+        <p class="muted-copy">Review your account information and keep your contact details up to date.</p>
+    </div>
+
+    <div class="profile-layout">
+        <div class="profile-card profile-hero">
+            <div class="profile-avatar">
+                {% if user.userregistation and user.userregistation.profile_pic %}
+                <img src="{{ user.userregistation.profile_pic.url }}" alt="{{ user.username }}">
+                {% else %}
+                <div class="profile-placeholder">{{ user.username|slice:":1"|upper }}</div>
+                {% endif %}
+            </div>
+            <h2 class="profile-title">{{ user.username }}</h2>
+            <p class="muted-copy">{{ user.email }}</p>
+            <div class="hero-actions" style="justify-content: center; margin-top: 1rem;">
+                <a class="btn-brand" href="{% url 'update' %}">Edit Profile</a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            {% if user.userregistation %}
+            <div class="section-kicker">Stored Details</div>
+            <h2 class="profile-title">Contact & address overview</h2>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="name">Mobile</div>
+                    <div class="value">{{ user.userregistation.mobile_no }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="name">Door No</div>
+                    <div class="value">{{ user.userregistation.door_no }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="name">Street</div>
+                    <div class="value">{{ user.userregistation.street }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="name">Landmark</div>
+                    <div class="value">{{ user.userregistation.land_mark }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="name">City</div>
+                    <div class="value">{{ user.userregistation.city }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="name">State</div>
+                    <div class="value">{{ user.userregistation.state }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="name">Pincode</div>
+                    <div class="value">{{ user.userregistation.pincode }}</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="name">Account</div>
+                    <div class="value status-good">Active</div>
+                </div>
+            </div>
+            {% else %}
+            <div class="empty-state">No profile details were found for this account yet.</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

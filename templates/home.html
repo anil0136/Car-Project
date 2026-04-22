@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="hero-panel">
+        <div class="hero-grid">
+            <div>
+                <div class="eyebrow">Automotive Marketplace</div>
+                <h1 class="display-title">Find your next <span>premium drive</span> with confidence.</h1>
+                <p class="hero-copy">
+                    Explore trusted car brands, compare standout models, and move from discovery to rental in a clean,
+                    modern experience built around clarity and speed.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="btn-brand" href="{% url 'company_list' %}">Browse New Cars</a>
+                    <a class="btn-secondary" href="{% url 'rent' %}">Book a Rental</a>
+                    <a class="btn-outline-accent" href="#highlights" data-scroll-target="#highlights">Why DriveLuxe</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">Premium</div>
+                        <div class="stat-label">Visual quality across every touchpoint</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">Fast</div>
+                        <div class="stat-label">Shorter buying and rental decision flow</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">Trusted</div>
+                        <div class="stat-label">Built around product transparency</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'images/l1.jpg' %}" alt="Luxury car exterior">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'images/l2.jpg' %}" alt="Performance car front view">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'images/l3.jpg' %}" alt="Premium automotive showcase">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overlay-card">
+                    <div class="section-kicker">Featured Journey</div>
+                    <div class="card-title">Buy or rent from one polished customer experience.</div>
+                    <div class="muted-copy">Discover brand collections, inspect model details, and estimate rental value without visual clutter.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="highlights" class="surface-panel" style="margin-top: 1.75rem;">
+        <div class="section-header">
+            <div>
+                <div class="section-kicker">Why It Feels Better</div>
+                <h2 class="section-title">A sharper, more <span>industry-ready</span> experience</h2>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Premium Brand Discovery</h3>
+                <p>Company and model views are organized like a modern automotive catalog instead of a collection of disconnected pages.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Clear Decision Surfaces</h3>
+                <p>Pricing, seat count, fuel type, and product context are highlighted in consistent cards and data chips.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Responsive By Default</h3>
+                <p>The new layout adapts cleanly from desktop to mobile, with shared spacing, readable forms, and simplified navigation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

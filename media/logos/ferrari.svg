@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" rx="40" fill="#0b1422"/>
+  <rect x="24" y="24" width="752" height="452" rx="30" fill="#111f34" stroke="#f59e0b" stroke-width="4"/>
+  <path d="M400 96 L490 142 L470 300 Q400 350 330 300 L310 142 Z" fill="#f4c542" stroke="#0b1422" stroke-width="8"/>
+  <text x="400" y="220" text-anchor="middle" fill="#0b1422" font-size="44" font-family="Arial, sans-serif" font-weight="700">FERRARI</text>
+  <text x="400" y="268" text-anchor="middle" fill="#0b1422" font-size="22" font-family="Arial, sans-serif" letter-spacing="4">ITALIA</text>
+  <text x="400" y="392" text-anchor="middle" fill="#f8fafc" font-size="58" font-family="Arial, sans-serif" font-weight="700">Ferrari</text>
+  <text x="400" y="432" text-anchor="middle" fill="#7dd3fc" font-size="20" font-family="Arial, sans-serif" letter-spacing="7">LUXURY PERFORMANCE</text>
+</svg>

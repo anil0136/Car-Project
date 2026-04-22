@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" rx="40" fill="#0b1422"/>
+  <rect x="24" y="24" width="752" height="452" rx="30" fill="#111f34" stroke="#f59e0b" stroke-width="4"/>
+  <path d="M250 230 C300 170 345 165 390 210 C435 165 500 165 550 230 C500 250 445 258 390 258 C335 258 300 250 250 230 Z" fill="#dbeafe" opacity="0.9"/>
+  <circle cx="400" cy="230" r="54" fill="#0b1422" stroke="#f8fafc" stroke-width="8"/>
+  <text x="400" y="248" text-anchor="middle" fill="#f8fafc" font-size="54" font-family="Arial, sans-serif" font-weight="700">B</text>
+  <text x="400" y="392" text-anchor="middle" fill="#f8fafc" font-size="56" font-family="Arial, sans-serif" font-weight="700">Bentley</text>
+  <text x="400" y="432" text-anchor="middle" fill="#7dd3fc" font-size="20" font-family="Arial, sans-serif" letter-spacing="7">LUXURY PERFORMANCE</text>
+</svg>

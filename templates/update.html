@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Profile Maintenance</div>
+        <h1 class="section-title">Update your <span>account details</span></h1>
+        <p class="muted-copy">Keep your email and profile information current so checkout and communication stay accurate.</p>
+    </div>
+
+    <div class="form-shell">
+        <form action="{% url 'update' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    {{ form.as_p }}
+                </div>
+                <div class="col-lg-6">
+                    {{ form1.as_p }}
+                </div>
+            </div>
+
+            <div class="hero-actions" style="margin-top: 1.5rem;">
+                <button type="submit" class="btn-brand">Save Changes</button>
+                <a class="btn-outline-light" href="{% url 'profile' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

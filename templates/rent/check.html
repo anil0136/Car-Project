@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell auth-shell">
+    <div class="summary-card" style="width: 100%; max-width: 760px;">
+        {% if cal %}
+        <div class="section-kicker">Rental Estimate</div>
+        <h1>{{ car.car_name }} estimated rent</h1>
+        <div class="price-display">Rs. {{ total_rent }}</div>
+        <p class="muted-copy">
+            This estimate is based on the current rental inputs. You can continue to the final price screen for a more complete calculation flow.
+        </p>
+        <div class="hero-actions" style="margin-top: 1.2rem;">
+            <a class="btn-brand" href="{% url 'frent' car.id %}">Check Final Price</a>
+            <a class="btn-outline-light" href="{% url 'check' car.id %}">Recalculate</a>
+        </div>
+        {% else %}
+        <div class="section-kicker">Rental Calculator</div>
+        <h1>Estimate rent for {{ car.car_name }}</h1>
+        <div class="info-grid" style="margin: 1.25rem 0;">
+            <div class="info-card">
+                <div class="card-body">
+                    <div class="section-kicker">Daily Distance</div>
+                    <div class="card-title">300 km</div>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="card-body">
+                    <div class="section-kicker">Rate Per Km</div>
+                    <div class="card-title">Rs. {{ km }}</div>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="card-body">
+                    <div class="section-kicker">Fuel Type</div>
+                    <div class="card-title">{{ car.fuel_type|upper }}</div>
+                </div>
+            </div>
+        </div>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label for="days">Number of days</label>
+                    <input type="number" id="days" name="days" placeholder="Example: 2" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="exp_km">Expected kilometers</label>
+                    <input type="number" id="exp_km" name="exp_km" value="0">
+                </div>
+            </div>
+            <div class="hero-actions" style="margin-top: 1.4rem;">
+                <button type="submit" class="btn-brand">Calculate Rent</button>
+                <a class="btn-outline-light" href="{% url 'frent' car.id %}">Open Final Price</a>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Account Setup</div>
+        <h1 class="section-title">Create your <span>DriveLuxe</span> profile</h1>
+        <p class="muted-copy">
+            Join with your personal details once, then explore vehicles, save your information, and move faster through the platform.
+        </p>
+    </div>
+
+    <div class="form-shell">
+        {% if registered %}
+        <div class="surface-panel" style="padding: 2rem; text-align: center;">
+            <div class="eyebrow">Registration Complete</div>
+            <h2 class="section-title">Your account is ready.</h2>
+            <p class="muted-copy">You can now continue to the login page and start browsing cars.</p>
+            <div class="hero-actions" style="justify-content: center; margin-top: 1rem;">
+                <a class="btn-brand" href="{% url 'login' %}">Go to Login</a>
+            </div>
+        </div>
+        {% else %}
+        <form method="POST" enctype="multipart/form-data" class="crispy-form">
+            {% csrf_token %}
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form1.mobile_no|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form1.door_no|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form1.street|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form1.land_mark|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form1.city|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form1.state|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form1.pincode|as_crispy_field }}
+                </div>
+                <div class="col-lg-6">
+                    {{ form.password|as_crispy_field }}
+                </div>
+                <div class="col-lg-6">
+                    {{ form1.profile_pic|as_crispy_field }}
+                </div>
+                <div class="col-12">
+                    <label>Verification</label>
+                    <div class="surface-panel" style="padding: 1rem;">
+                        {{ form1.captcha }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-actions" style="margin-top: 1.75rem;">
+                <button type="submit" class="btn-brand">Create Account</button>
+                <a class="btn-outline-light" href="{% url 'login' %}">Already have an account</a>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

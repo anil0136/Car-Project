@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell auth-shell">
+    <div class="auth-grid" style="width: 100%; max-width: 1040px;">
+        <div class="auth-card">
+            <div class="eyebrow">Member Access</div>
+            <h1>Welcome back</h1>
+            <p class="muted-copy">
+                Sign in to continue your buying journey, manage your profile, and review available rental options in one place.
+            </p>
+
+            <div class="feature-grid" style="grid-template-columns: 1fr;">
+                <div class="feature-card">
+                    <h3>Faster navigation</h3>
+                    <p>Jump straight into company listings, model details, and car rentals after login.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Personalized experience</h3>
+                    <p>Your profile and contact details stay connected across the app.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-card">
+            <div class="section-kicker">Secure Login</div>
+            <h1>Sign in to DriveLuxe</h1>
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="field-group">
+                    <div>
+                        <label for="username">Username</label>
+                        <input id="username" type="text" name="username" value="{{ entered_username }}" placeholder="Enter your username" required>
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+
+                <div class="inline-actions" style="justify-content: space-between; margin-top: 1rem;">
+                    <a class="inline-note" href="{% url 'reset' %}">Forgot your password?</a>
+                    <a class="inline-note" href="{% url 'register' %}">Create an account</a>
+                </div>
+
+                <div class="hero-actions" style="margin-top: 1.4rem;">
+                    <button type="submit" class="btn-brand">Login</button>
+                    <a class="btn-outline-light" href="{% url 'register' %}">Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% if error_message %}
+<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 1080;">
+    <div id="loginErrorToast" class="toast show text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                {{ error_message }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

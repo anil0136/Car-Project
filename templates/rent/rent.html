@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-shell">
+    <div class="page-intro">
+        <div class="section-kicker">Rental Fleet</div>
+        <h1 class="section-title">Choose a rental <span>category</span></h1>
+        <p class="muted-copy">Filter the fleet by seat capacity, then inspect specifications and estimated pricing before checkout.</p>
+    </div>
+
+    <div class="surface-panel" style="margin-bottom: 1.5rem;">
+        <div class="hero-actions">
+            <a class="{% if seat_type == '5 seater' %}btn-brand{% else %}btn-outline-light{% endif %}" href="?seat=5 seater">5 Seater Fleet</a>
+            <a class="{% if seat_type == '7 seater' %}btn-brand{% else %}btn-outline-light{% endif %}" href="?seat=7 seater">7 Seater Fleet</a>
+        </div>
+    </div>
+
+    {% if cars %}
+    <div class="product-grid">
+        {% for car in cars %}
+        <article class="product-card">
+            <div class="card-image">
+                {% if car.car_img %}
+                <img src="{{ car.car_img.url }}" alt="{{ car.car_name }}">
+                {% else %}
+                <div class="empty-state" style="width: 100%;">Image unavailable</div>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <span class="pill">{{ car.seat_capacity }}</span>
+                <h2 class="card-title" style="margin-top: 0.8rem;">{{ car.car_name }}</h2>
+                <p class="card-subtitle">{{ car.Company }} | {{ car.transmission_type|title }}</p>
+                <div class="data-chips">
+                    <div class="data-chip">
+                        <div class="label">Fuel</div>
+                        <div class="value">{{ car.fuel_type|upper }}</div>
+                    </div>
+                    <div class="data-chip">
+                        <div class="label">Rating</div>
+                        <div class="value">{{ car.rating }}/5</div>
+                    </div>
+                    <div class="data-chip">
+                        <div class="label">Bootspace</div>
+                        <div class="value">{{ car.bootspace }} L</div>
+                    </div>
+                </div>
+                <div class="hero-actions" style="margin-top: 1rem;">
+                    <a class="btn-brand" href="{% url 'details' car.id %}">View Details</a>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    {% elif seat_type %}
+    <div class="empty-state">No cars were found for {{ seat_type }}.</div>
+    {% else %}
+    <div class="empty-state">Select a category above to view available rental cars.</div>
+    {% endif %}
+</section>
+{% endblock %}
