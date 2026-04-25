@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
 
 {% block content %}
 <section class="page-shell">
@@ -59,32 +58,10 @@
                 {% else %}
                 <div class="empty-state" style="height: 100%;">Primary image unavailable</div>
                 {% endif %}
-=======
-{% load static %}
-
-{% block content %}
-<div class="container py-5 text-center">
-    <h2 class="mb-4 text-neon-blue">{{ product.product_name }}</h2>
-
-    <!-- Interior Section -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <div class="card neon-green-card shadow-lg p-5" style="max-width: 95%; margin: 0 auto;">
-                <h4 class="text-neon-green mb-4">✨ Interior Images</h4>
-                <div class="d-flex flex-wrap justify-content-center gap-4">
-                    {% for img in interior_images %}
-                    <img src="{{ img.interior.url }}" alt="Interior" class="img-fluid"
-                        style="height:280px; border-radius:12px; box-shadow:0 0 15px #39ff14;">
-                    {% empty %}
-                    <p class="text-neon-green">No interior images available.</p>
-                    {% endfor %}
-                </div>
->>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
             </div>
         </div>
     </div>
 
-<<<<<<< HEAD
     <div class="surface-panel" style="margin-top: 1.75rem;">
         <div class="section-header">
             <div>
@@ -128,118 +105,3 @@
     </div>
 </section>
 {% endblock %}
-=======
-    <!-- Exterior Section -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <div class="card neon-pink-card shadow-lg p-5" style="max-width: 95%; margin: 0 auto;">
-                <h4 class="text-neon-pink mb-4">🚘 Exterior Images</h4>
-                <div class="d-flex flex-wrap justify-content-center gap-4">
-                    {% for img in exterior_images %}
-                    <img src="{{ img.exterior.url }}" alt="Exterior" class="img-fluid"
-                        style="height:280px; border-radius:12px; box-shadow:0 0 15px #ff00ff;">
-                    {% empty %}
-                    <p class="text-neon-pink">No exterior images available.</p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="d-flex justify-content-center gap-4 mt-5">
-        <a href="#" class="btn neon-btn-green px-4 py-2">🔙 Back</a>
-        <a href="#" class="btn neon-btn-yellow px-4 py-2">ℹ️ More Info</a>
-        <a href="#" class="btn neon-btn-pink px-4 py-2">🚗 Book Now</a>
-    </div>
-</div>
-
-<style>
-    body {
-        background: #000;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #fff;
-    }
-
-    h2 {
-        text-shadow: 0 0 8px #00ffff, 0 0 15px #39ff14, 0 0 25px #ff00ff;
-    }
-
-    /* Neon Text */
-    .text-neon-green {
-        color: #39ff14;
-        text-shadow: 0 0 6px #39ff14, 0 0 12px #39ff14;
-    }
-
-    .text-neon-pink {
-        color: #ff00ff;
-        text-shadow: 0 0 6px #ff00ff, 0 0 12px #ff00ff;
-    }
-
-    .text-neon-yellow {
-        color: #ffff33;
-        text-shadow: 0 0 6px #ffff33, 0 0 12px #ffff33;
-    }
-
-    .text-neon-blue {
-        color: #00ffff;
-        text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff;
-    }
-
-    /* Neon Cards */
-    .neon-green-card {
-        border: 2px solid #39ff14;
-        box-shadow: 0 0 20px #39ff14;
-        background: rgba(57, 255, 20, 0.1);
-        border-radius: 20px;
-    }
-
-    .neon-pink-card {
-        border: 2px solid #ff00ff;
-        box-shadow: 0 0 20px #ff00ff;
-        background: rgba(255, 0, 255, 0.1);
-        border-radius: 20px;
-    }
-
-    /* Neon Buttons */
-    .neon-btn-green {
-        border: 2px solid #39ff14;
-        color: #39ff14;
-        text-shadow: 0 0 6px #39ff14;
-        background: transparent;
-    }
-
-    .neon-btn-green:hover {
-        background: #39ff14;
-        color: #000;
-        box-shadow: 0 0 20px #39ff14;
-    }
-
-    .neon-btn-yellow {
-        border: 2px solid #ffff33;
-        color: #ffff33;
-        text-shadow: 0 0 6px #ffff33;
-        background: transparent;
-    }
-
-    .neon-btn-yellow:hover {
-        background: #ffff33;
-        color: #000;
-        box-shadow: 0 0 20px #ffff33;
-    }
-
-    .neon-btn-pink {
-        border: 2px solid #ff00ff;
-        color: #ff00ff;
-        text-shadow: 0 0 6px #ff00ff;
-        background: transparent;
-    }
-
-    .neon-btn-pink:hover {
-        background: #ff00ff;
-        color: #000;
-        box-shadow: 0 0 20px #ff00ff;
-    }
-</style>
-{% endblock %}
->>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
