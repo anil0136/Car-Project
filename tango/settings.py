@@ -149,7 +149,8 @@ AUTO_LOGOUT = {
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
 }
 
-
+ALLOWED_HOSTS = ['*']
+STATIC_ROOT = 'staticfiles'
 
 #email backend config
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
