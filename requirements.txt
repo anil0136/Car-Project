@@ -1,0 +1,11 @@
+Django==6.0.3
+django-crispy-forms==2.6
+crispy-bootstrap5==2026.3
+django-recaptcha==4.1.0
+django-auto-logout==0.5.1
+Pillow==12.1.1
+gunicorn==25.3.0
+djangorestframework==3.17.1
+django-filter==25.2
+python-dotenv==1.2.2
+requests==2.32.5
