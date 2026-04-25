@@ -26,7 +26,11 @@ def check(request, car_id):
 
     if request.method == 'POST':
         days = int(request.POST.get('days', 1))
+<<<<<<< HEAD
         except_km = int(request.POST.get('exp_km', 0))
+=======
+        except_km = int(request.POST.get('except_km', 0))
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
         if except_km==0:
             total_rent = days * 300 * km 
             print(total_rent)
@@ -62,11 +66,19 @@ def frent(request,car_id):
     car_name = car.car_name
     total_km_driven = car.total_km_driven
     total_amount = 0
+<<<<<<< HEAD
     user_email = None
     if request.user.is_authenticated:
         user_email = request.user.email
     km = 0
     fp = 0
+=======
+    user_email="None"
+    if request.user.is_authenticated:
+        user_email = request.user.email
+    km = 0
+    fp=0
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
     if car.seat_capacity == '5 seater':
         km = 50
     elif car.seat_capacity == '7 seater':
@@ -75,6 +87,7 @@ def frent(request,car_id):
     if request.method == 'POST':
         days = int(request.POST.get('days', 1))
         except_km = int(request.POST.get('exp_km', 0))
+<<<<<<< HEAD
 
         tk = except_km - car.total_km_driven
         if tk < 0:
@@ -107,3 +120,33 @@ def frent(request,car_id):
 
 
         
+=======
+        tk=except_km-car.total_km_driven
+        petrol=(tk/car.milage)*102
+        if tk>days*300:
+            tp=tk*km
+            fp=(tp-petrol)+(tp*0.02)
+            ca=True
+            return render(request, 'rent/frent.html', {'ca': ca, 'km': km, 'car': car,'fp':fp})
+        elif tk==days*300:
+            tp=tk*km
+            fp=(tp-petrol)
+            ca=True
+            return render(request, 'rent/frent.html', {'ca': ca, 'km': km, 'car': car,'fp':fp})
+        else:
+            tp=days*300*km
+            fp=(tp-petrol)
+            ca =True
+            return render(request, 'rent/frent.html', {'ca': ca, 'km': km, 'car': car,'fp':fp})
+            
+    send_email_view(user_email,car_name, total_km_driven, total_amount)
+    print("Email sent to:", user_email)
+
+      
+
+    return render(request, 'rent/frent.html', {'ca': ca, 'km': km, 'car': car,'fp':fp})
+
+
+
+        
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343

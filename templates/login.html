@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {% block content %}
@@ -65,3 +66,149 @@
 </div>
 {% endif %}
 {% endblock %}
+=======
+{% include 'base.html' %}
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    .container-login {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 🔥 Rotating neon square */
+    .rotating-square {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        border: 6px solid #39ff14;
+        box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14;
+        animation: rotateSquare 6s linear infinite;
+        border-radius: 12px;
+    }
+
+    @keyframes rotateSquare {
+        0% {
+            transform: rotate(0deg);
+            border-color: #39ff14;
+            box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14;
+        }
+
+        25% {
+            border-color: #ff14e1;
+            box-shadow: 0 0 20px #ff14e1, 0 0 40px #ff14e1;
+        }
+
+        50% {
+            border-color: #faff00;
+            box-shadow: 0 0 20px #faff00, 0 0 40px #faff00;
+        }
+
+        75% {
+            border-color: #00faff;
+            box-shadow: 0 0 20px #00faff, 0 0 40px #00faff;
+        }
+
+        100% {
+            transform: rotate(360deg);
+            border-color: #39ff14;
+            box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14;
+        }
+    }
+
+    .login-card {
+        position: relative;
+        background: rgba(20, 20, 20, 0.9);
+        border: 2px solid #39ff14;
+        border-radius: 20px;
+        box-shadow: 0 0 25px #ff14e1, 0 0 50px #39ff14;
+        padding: 40px;
+        max-width: 320px;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .login-card h1 {
+        color: #faff00;
+        text-shadow: 0 0 10px #faff00, 0 0 20px #ff14e1;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        background-color: #000 !important;
+        border: 2px solid #39ff14;
+        color: #fff !important;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    .form-control::placeholder {
+        color: #aaa;
+    }
+
+    .form-control:focus {
+        border-color: #39ff14;
+        box-shadow: 0 0 10px #39ff14;
+        background-color: #000;
+        color: #fff;
+    }
+
+    .btn-neon {
+        background: transparent;
+        border: 2px solid #faff00;
+        color: #faff00;
+        font-weight: bold;
+        border-radius: 12px;
+        padding: 10px 25px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-neon:hover {
+        background: #39ff14;
+        color: #000;
+        box-shadow: 0 0 15px #39ff14, 0 0 30px #ff14e1;
+    }
+
+    a {
+        color: #ff14e1;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-shadow: 0 0 10px #ff14e1;
+    }
+</style>
+
+<div class="container-login">
+    <div class="rotating-square"></div> <!-- 🔥 Neon rotating square -->
+
+    <div class="login-card">
+        <h1>LOGIN HERE</h1>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="username" class="form-control" placeholder="Enter the username">
+
+            <input type="password" name="password" class="form-control" placeholder="Enter the password">
+
+            <a href="{% url 'reset' %}">Forgot password?</a>
+            <br><br>
+
+            <button type="submit" class="btn btn-neon">Login</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343

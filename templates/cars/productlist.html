@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
 
 {% block content %}
 <section class="page-shell">
@@ -94,3 +95,231 @@
     {% endif %}
 </section>
 {% endblock %}
+=======
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+
+    <h1 class="mb-4 text-center text-neon-blue">
+        {% if company %}
+        {{ company.name }} Products Details
+        {% else %}
+        🚘 All Products
+        {% endif %}
+    </h1>
+
+    <div class="card-body mb-3 text-center">
+        <h5 class="card-title neon-card neon-green">Ceo - {{ company.ceo }}</h5>
+        <h5 class="card-title neon-card neon-pink">Established Year - {{ company.est_year }}</h5>
+        <h5 class="card-title neon-card neon-yellow">Origin - {{ company.origin }}</h5>
+    </div>
+
+    <div class="mb-3">
+        <a href="{% if company %}{% url 'company_list' %}{% else %}{% url 'home' %}{% endif %}"
+            class="btn btn-outline-neon-green">⬅ Back</a>
+    </div>
+
+    {% if products %}
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card shadow-lg h-100 product-card 
+                {% cycle 'neon-green-border' 'neon-pink-border' 'neon-yellow-border' 'neon-blue-border' %}">
+                <div class="image-container">
+                    {% if product.product_img %}
+                    <img src="{{ product.product_img.url }}" class="card-img-top" alt="{{ product.product_name }}">
+                    {% else %}
+                    <div class="bg-dark text-center d-flex align-items-center justify-content-center text-white"
+                        style="height: 250px;">
+                        No Image
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body text-center position-relative">
+                    <a href="{% url 'details1' product.id %}" style="text-decoration: none;">
+                        <h5 class="card-title fw-bold text-neon-yellow">{{ product.product_name }}</h5>
+                    </a>
+                    <p class="mb-1 text-neon-green"><strong>Color:</strong> {{ product.color }}</p>
+                    <p class="mb-1 text-neon-pink"><strong>Fuel:</strong> {{ product.fuel_type }}</p>
+                    <p class="mb-1 text-neon-blue"><strong>Seats:</strong> {{ product.seat_Capacity }}</p>
+
+                    <!-- Price -->
+                    <div class="d-flex justify-content-center gap-2 mt-2">
+                        <p class="mb-0 fs-5 text-neon-green fw-bold">₹{{ product.price }}</p>
+                    </div>
+
+                    <!-- Info button (bottom-right corner) -->
+                    <a href="{% url 'emi' %}" class="info-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#39ff14"
+                            class="bi bi-info-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                            <path
+                                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center">No products available.</p>
+    {% endif %}
+
+</div>
+
+<style>
+    body {
+        background: #000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+    }
+
+    h1 {
+        text-shadow: 0 0 8px #00ffff, 0 0 12px #39ff14, 0 0 20px #ff00ff, 0 0 30px #ffff33;
+    }
+
+    /* Neon Colors */
+    .text-neon-green {
+        color: #39ff14;
+        text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
+    }
+
+    .text-neon-pink {
+        color: #ff00ff;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+    }
+
+    .text-neon-yellow {
+        color: #ffff33;
+        text-shadow: 0 0 5px #ffff33, 0 0 10px #ffff33;
+    }
+
+    .text-neon-blue {
+        color: #00ffff;
+        text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    }
+
+    /* Neon Borders */
+    .neon-green-border {
+        border: 2px solid #39ff14;
+        box-shadow: 0 0 15px #39ff14;
+    }
+
+    .neon-pink-border {
+        border: 2px solid #ff00ff;
+        box-shadow: 0 0 15px #ff00ff;
+    }
+
+    .neon-yellow-border {
+        border: 2px solid #ffff33;
+        box-shadow: 0 0 15px #ffff33;
+    }
+
+    .neon-blue-border {
+        border: 2px solid #00ffff;
+        box-shadow: 0 0 15px #00ffff;
+    }
+
+    /* Product Card Hover */
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(20, 20, 20, 0.9);
+        position: relative;
+    }
+
+    .product-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 0 25px #fff;
+    }
+
+    /* Image Zoom */
+    .image-container {
+        overflow: hidden;
+        height: 250px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .image-container img {
+        transform: scale(1.1);
+    }
+
+    /* Neon Buttons */
+    .btn-outline-neon-green {
+        border: 2px solid #39ff14;
+        color: #39ff14;
+        text-shadow: 0 0 5px #39ff14;
+    }
+
+    .btn-outline-neon-green:hover {
+        background: #39ff14;
+        color: #000;
+        box-shadow: 0 0 15px #39ff14;
+    }
+
+    /* Neon Info Cards */
+    .neon-card {
+        padding: 10px;
+        border-radius: 10px;
+        margin: 5px auto;
+    }
+
+    .neon-green {
+        background: rgba(57, 255, 20, 0.15);
+        border: 1px solid #39ff14;
+        box-shadow: 0 0 10px #39ff14;
+    }
+
+    .neon-pink {
+        background: rgba(255, 0, 255, 0.15);
+        border: 1px solid #ff00ff;
+        box-shadow: 0 0 10px #ff00ff;
+    }
+
+    .neon-yellow {
+        background: rgba(255, 255, 51, 0.15);
+        border: 1px solid #ffff33;
+        box-shadow: 0 0 10px #ffff33;
+    }
+
+    .neon-blue {
+        background: rgba(0, 255, 255, 0.15);
+        border: 1px solid #00ffff;
+        box-shadow: 0 0 10px #00ffff;
+    }
+
+    /* Info Button (Bottom-Right Corner) */
+    .info-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        border-radius: 50%;
+        background: rgba(57, 255, 20, 0.15);
+        border: 1px solid #39ff14;
+        box-shadow: 0 0 8px #39ff14;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #ff00ff;
+        color: #ff00ff;
+    }
+</style>
+{% endblock %}
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343

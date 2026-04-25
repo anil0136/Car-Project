@@ -12,7 +12,11 @@ def company_list(request):
 @login_required(login_url='login') 
 def product_list(request):
     products = Products.objects.all()
+<<<<<<< HEAD
     return render(request, 'cars/productlist.html', {
+=======
+    return render(request, 'cars/productslist.html', {
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
         'products': products,
         'company': None
     })
@@ -20,7 +24,11 @@ def product_list(request):
 @login_required(login_url='login') 
 def product_list(request):
     products = Products.objects.all()
+<<<<<<< HEAD
     return render(request, 'cars/productlist.html', {
+=======
+    return render(request, 'cars/productslist.html', {
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
         'products': products,
         'company': None
     })
@@ -35,6 +43,7 @@ def company_products(request, company_id):
     })
 
 @login_required(login_url='login')
+<<<<<<< HEAD
 def emi(request):
     annual_interest_rate = 9.5
     car_price = request.GET.get('price') or request.POST.get('car_price') or ""
@@ -92,6 +101,10 @@ def emi(request):
         'total_interest': total_interest,
         'emi_error': emi_error,
     })
+=======
+def emi (request):
+    return render(request, 'cars/emi.html',{})
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
 
 @login_required(login_url='login')
 def details1(request, product_id):

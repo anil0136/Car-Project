@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -75,3 +76,171 @@
     </div>
 </section>
 {% endblock %}
+=======
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .jumbotron {
+        background: transparent;
+        padding: 2rem;
+    }
+
+    .card {
+        border-radius: 15px;
+        background: #121212;
+        color: #f8f9fa;
+        box-shadow: 0 0 15px rgba(0, 255, 128, 0.5);
+        transition: all 0.3s ease;
+        width: 100%;
+        max-width: 900px;
+        /* Increased width */
+        margin: auto;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 25px rgba(255, 20, 147, 0.7);
+    }
+
+    h1 {
+        color: #39ff14;
+        text-shadow: 0 0 10px #39ff14, 0 0 20px #39ff14;
+        font-weight: bold;
+    }
+
+    a {
+        color: #ff00ff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #39ff14;
+        text-shadow: 0 0 10px #39ff14;
+    }
+
+    .btn-primary {
+        background-color: #39ff14;
+        border: none;
+        font-weight: bold;
+        box-shadow: 0 0 10px #39ff14;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff00ff;
+        box-shadow: 0 0 15px #ff00ff;
+        color: white;
+    }
+
+    .form-control {
+        background-color: #1e1e1e;
+        color: #fff;
+        border: 1px solid #39ff14;
+        border-radius: 8px;
+    }
+
+    .form-control:focus {
+        border-color: #ff00ff;
+        box-shadow: 0 0 10px #ff00ff;
+        background-color: #1e1e1e;
+        color: #fff;
+    }
+
+    /* Captcha styling */
+    .captcha-box {
+        display: inline-block;
+        padding: 10px;
+        border: 2px solid #39ff14;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #39ff14;
+        background: #1a1a1a;
+    }
+
+    /* Password eye button */
+    .input-group-text {
+        background: #1e1e1e;
+        border: 1px solid #39ff14;
+        cursor: pointer;
+        color: #39ff14;
+    }
+
+    .input-group-text:hover {
+        border-color: #ff00ff;
+        color: #ff00ff;
+    }
+</style>
+
+<div class="container py-5">
+    <div class="jumbotron">
+        <div class="card card-body">
+            {% if registered %}
+            <div class="card card-body text-center">
+                <h1>Thank you for Registration</h1>
+                <p>Please proceed to <a href="{% url 'login' %}">Login</a></p>
+            </div>
+            {% else %}
+            <h1 class="text-center mb-4">Registration Form</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        {{ form.username|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form1.mobile_no|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        {{ form1.door_no|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form1.street|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form1.land_mark|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        {{ form1.city|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form1.state|as_crispy_field }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form1.pincode|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        {{ form.password|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form1.profile_pic|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="mb-3 d-flex justify-content-center">
+                    {{ form1.captcha }}
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Submit" class="btn btn-primary px-5 py-2">
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
 
 {% block content %}
 <section class="page-shell">
@@ -65,3 +66,95 @@
     </div>
 </section>
 {% endblock %}
+=======
+{% block content %}
+<div class="container py-5 text-center position-relative">
+
+    <!-- Back Button (Top Left Corner) -->
+    <div class="position-absolute top-0 start-0 m-3">
+        <a href="{% url 'rent' %}" class="btn neon-btn-yellow px-3 py-2">⬅ Back</a>
+    </div>
+
+    <!-- Car Details -->
+    <h2 class="mb-4 neon-text">{{ car.car_name }} Details</h2>
+    <div class="card mx-auto shadow-lg neon-card-green" style="max-width: 500px;">
+        {% if car.car_img %}
+        <img src="{{ car.car_img.url }}" class="card-img-top" style="height:250px;object-fit:cover;">
+        {% endif %}
+        <div class="card-body text-start">
+            <h4 class="card-title neon-text text-center">{{ car.car_name }}</h4>
+            <p class="detail-green"><b>Company:</b> {{ car.Company }}</p>
+            <p class="detail-pink"><b>Color:</b> {{ car.color }}</p>
+            <p class="detail-yellow"><b>Fuel Type:</b> {{ car.fuel_type }}</p>
+            <p class="detail-blue"><b>Seat Capacity:</b> {{ car.seat_capacity }}</p>
+            <p class="detail-green"><b>Transmission:</b> {{ car.transmission_type }}</p>
+            <p class="detail-pink"><b>Total KM Driven:</b> {{ car.total_km_driven }}</p>
+            <p class="detail-yellow"><b>Bootspace:</b> {{ car.bootspace }} L</p>
+            <p class="detail-blue"><b>Rating:</b> {{ car.rating }}/5</p>
+            <p class="detail-green"><b>Amenities:</b> {{ car.amminities }}</p>
+        </div>
+    </div>
+    <!-- Book Now Button -->
+    <div class="mt-4">
+        <a href="{% url 'check' car.id %}" class="btn neon-btn-yellow px-4 py-2"><b>Checkout Rent Details</b></a>
+    </div>
+
+
+
+</div>
+
+<!-- Neon Styles -->
+<style>
+    body {
+        background: black;
+    }
+
+    /* Car name only */
+    .neon-text {
+        color: #fff;
+        font-weight: bold;
+        text-shadow: 0 0 10px #39ff14, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+    }
+
+    /* Details highlighted without shadow */
+    .detail-green {
+        color: #39ff14;
+        font-weight: bold;
+    }
+
+    .detail-pink {
+        color: #ff00ff;
+        font-weight: bold;
+    }
+
+    .detail-yellow {
+        color: #ffff00;
+        font-weight: bold;
+    }
+
+    .detail-blue {
+        color: #00ffff;
+        font-weight: bold;
+    }
+
+    /* Neon Buttons */
+    .neon-btn-yellow {
+        background: black;
+        border: 2px solid #ffff00;
+        color: #ffff00;
+    }
+
+    .neon-btn-yellow:hover {
+        background: #ffff00;
+        color: black;
+    }
+
+    /* Neon Card */
+    .neon-card-green {
+        background: #111;
+        border: 2px solid #39ff14;
+        box-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14 inset;
+    }
+</style>
+{% endblock %}
+>>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
