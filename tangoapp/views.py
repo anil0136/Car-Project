@@ -33,15 +33,12 @@ def register(request):
 
     return render(request,'register.html',context)
 def user_login(request):
-<<<<<<< HEAD
     error_message = None
     username = ""
-=======
->>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
 
     if request.method =='POST':
-        username=request.POST['username']
-        password=request.POST['password']
+        username=request.POST.get('username')
+        password=request.POST.get('password')
         print(username)
         print(password)
         user=authenticate(username=username,password=password)
@@ -50,13 +47,8 @@ def user_login(request):
                 login(request,user)
                 return redirect("home")
         else:
-<<<<<<< HEAD
             error_message = "Invalid username or password."
     return render(request,'login.html',{'error_message': error_message, 'entered_username': username})
-=======
-            return HttpResponse("pls check your creda...!")
-    return render(request,'login.html',{})
->>>>>>> cd6a32cbf5e7f2386a2e3b1555c2b0379dafe343
 @login_required(login_url='login')
 def home(request):
     context={
