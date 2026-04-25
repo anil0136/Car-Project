@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_auto_logout.middleware.auto_logout',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'tango.urls'
@@ -125,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
@@ -136,8 +138,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
-RECAPTCHA_PUBLIC_KEY = '6Le93LcrAAAAACFR8yq3o0ViQqsOhT7QJQTqE_sS'
-RECAPTCHA_PRIVATE_KEY = '6Le93LcrAAAAACMPXXkIC69kF4xC1Qydfh9_6RGY'
+RECAPTCHA_PUBLIC_KEY = '6Le7Z8osAAAAAByH_ZyLu05HOAx7m8NaMYjYwlLG'
+RECAPTCHA_PRIVATE_KEY = '6Le7Z8osAAAAAGTVHtR6tu9gQOo3DEP408IAhlP2'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
